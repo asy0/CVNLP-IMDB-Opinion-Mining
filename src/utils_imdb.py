@@ -21,8 +21,21 @@ def _read_many(files, label, max_docs=None):
 def read_imdb_split(split_dir: Path, max_docs_per_class: int | None = None) -> pd.DataFrame:
     """Read IMDB split (train or test) with optional cap per class for quick runs."""
     split_dir = Path(split_dir)
-    pos_files = sorted(glob.glob(os.path.join(split_dir, "pos", "*.txt")))
-    neg_files = sorted(glob.glob(os.path.join(split_dir, "neg", "*.txt")))
+    # Konvertiere Path-Objekt zu String für os.path.join und glob
+    split_dir_str = str(split_dir)
+    
+    # Debug: Prüfe ob Verzeichnis existiert
+    if not split_dir.exists():
+        print(f"⚠️ WARNUNG: Verzeichnis existiert nicht: {split_dir}")
+    
+    pos_files = sorted(glob.glob(os.path.join(split_dir_str, "pos", "*.txt")))
+    neg_files = sorted(glob.glob(os.path.join(split_dir_str, "neg", "*.txt")))
+    
+    # Debug: Zeige gefundene Dateien
+    if len(pos_files) == 0 and len(neg_files) == 0:
+        print(f"⚠️ WARNUNG: Keine Dateien gefunden in {split_dir}")
+        print(f"   Prüfe: {split_dir / 'pos'}")
+        print(f"   Prüfe: {split_dir / 'neg'}")
 
     pos_texts, pos_labels = _read_many(pos_files, 1, max_docs_per_class)
     neg_texts, neg_labels = _read_many(neg_files, 0, max_docs_per_class)

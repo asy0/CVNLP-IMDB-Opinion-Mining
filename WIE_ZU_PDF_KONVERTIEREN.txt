@@ -1,0 +1,43 @@
+================================================================================
+WIE SIE IHRE JUPYTER NOTEBOOKS ZU PDF KONVERTIEREN
+================================================================================
+
+METHODE 1: Über Jupyter Notebook selbst (EINFACHSTE METHODE)
+-------------------------------------------------------------
+1. Öffnen Sie jedes Notebook in Jupyter:
+   - Rechtsklick auf das .ipynb File → "Open with" → Jupyter Notebook
+   ODER
+   - Führen Sie aus: jupyter notebook
+
+2. In Jupyter Notebook:
+   - Klicken Sie auf "File" → "Download as" → "PDF via LaTeX" 
+     ODER
+   - "File" → "Print Preview" → Dann im Browser "Drucken" → "Als PDF speichern"
+
+METHODE 2: Mit jupyter nbconvert (Komandozeile)
+------------------------------------------------
+Öffnen Sie PowerShell in diesem Verzeichnis und führen Sie aus:
+
+jupyter nbconvert --to pdf 01_explore_dataset.ipynb
+jupyter nbconvert --to pdf 02_nb_tfidf_baseline.ipynb
+jupyter nbconvert --to pdf 03_lstm_model.ipynb
+jupyter nbconvert --to pdf 04_model_comparison.ipynb
+
+FALLS FEHLER: "LaTeX not found"
+→ Installieren Sie MiKTeX: https://miktex.org/download
+→ Nach Installation: Neu starten und nochmal versuchen
+
+METHODE 3: Über HTML (FALLBACK - FUNKTIONIERT IMMER)
+-----------------------------------------------------
+1. Konvertieren Sie zu HTML:
+   jupyter nbconvert --to html *.ipynb
+
+2. Öffnen Sie die HTML-Dateien im Browser (Doppelklick)
+
+3. Im Browser: Strg+P (Drucken) → "Als PDF speichern"
+
+================================================================================
+EMPFOHLEN: Methode 1 (über Jupyter Notebook selbst) ist am einfachsten!
+================================================================================
+
+
